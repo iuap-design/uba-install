@@ -12,6 +12,6 @@ function getPrefix() {
 module.exports = {
   plugin : function(cmd){
     console.log(chalk.green("Plugin \`Install\` load Done."));
-    console.log(getPrefix());
+    console.log(`${getPrefix()}/lib/node_modules/uba-${cmd[0]}`);
   }
 }
