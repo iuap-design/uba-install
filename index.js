@@ -16,7 +16,7 @@ function getPrefix() {
 }
 
 function getNodeModulePath(name) {
-  return `${getPrefix()}/lib/${name}/`;
+  return `${getPrefix()}/lib/node_modules/${name}/`;
 }
 
 function installPackage(pkg,name) {
