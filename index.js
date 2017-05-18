@@ -16,10 +16,14 @@ function getPrefix() {
 }
 
 function getNodeModulePath(name) {
-  return `${getPrefix()}/lib/node_modules/${name}/`;
+  return os.platform() == "darwin" ? `${getPrefix()}/lib/node_modules/${name}/` : `${getPrefix()}/node_modules/${name}/`;
 }
 
-function installPackage(pkg,name) {
+function getPlatform() {
+  return os.platform();
+}
+
+function installPackage(pkg, name) {
   co(function*() {
     yield npminstall({
       // install root dir
@@ -49,6 +53,6 @@ module.exports = {
     commands = options.cmd;
     console.log(options);
     console.log(chalk.green("Plugin \`Install\` load Done."));
-    installPackage(commands[1],options.name);
+    installPackage(commands[1], options.name);
   }
 }
