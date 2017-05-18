@@ -1,10 +1,10 @@
 {
   "name": "uba-install",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "description": "uba package installer plugin",
   "main": "index.js",
   "scripts": {
-    "start" : "node start init"
+
   },
   "repository": {
     "type": "git",
