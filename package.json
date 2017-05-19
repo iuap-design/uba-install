@@ -1,6 +1,6 @@
 {
   "name": "uba-install",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "uba package installer plugin",
   "main": "index.js",
   "scripts": {

@@ -1,3 +1,10 @@
+/*
+ * @Author: Kvkens
+ * @Date:   2017-5-15 00:00:00
+ * @Last Modified by:   Kvkens
+ * @Last Modified time: 2017-5-19 22:38:39
+ */
+
 const path = require("path");
 const os = require("os");
 const chalk = require("chalk");
@@ -6,8 +13,8 @@ const co = require('co');
 const fs = require('fs');
 const npminstall = require('npminstall');
 
-var commands = null,
-  pluginname = null;
+var commands = null;
+var pluginname = null;
 var installDir = os.homedir() + "/.uba";
 var ubaVersionPath = installDir + "/uba-plugin.json";
 
@@ -21,10 +28,6 @@ function getPrefix() {
 
 function getNodeModulePath(name) {
   return os.platform() == "darwin" ? `${getPrefix()}/lib/node_modules/${name}/` : `${getPrefix()}/node_modules/${name}/`;
-}
-
-function getPlatform() {
-  return os.platform();
 }
 
 function uninstall(pkgname) {
@@ -46,7 +49,7 @@ function updateVersion(pkgname) {
     configObj["version"][pkgname] = version;
     fs.writeFile(ubaVersionPath, JSON.stringify(configObj), (err) => {
       if (err) throw err;
-      console.log(chalk.green(`plugin uba-${pkgname} success installed.`));
+      console.log(chalk.green(`success installed. try <uba ${pkgname} -h>`));
     });
   });
 }
@@ -79,11 +82,32 @@ function installPackage(pkg, name) {
     updateVersion(pkg);
   });
 }
+
+function getHelp() {
+  console.log(chalk.green(" Usage : "));
+  console.log();
+  console.log(chalk.green(" uba install <name>"));
+  console.log();
+  process.exit(0);
+}
+
+function getVersion() {
+  console.log(chalk.green(require("../package.json").version));
+  process.exit(0);
+}
+
+
 module.exports = {
   plugin: function(options) {
     commands = options.cmd;
     pluginname = options.name;
-    console.log(chalk.green("Plugin \`Install\` load Done."));
+    if (options.argv.h || options.argv.help) {
+      getHelp();
+    }
+    if (options.argv.v || options.argv.version) {
+      getVersion();
+    }
+
     installPackage(commands[1], options.name);
   }
 }
