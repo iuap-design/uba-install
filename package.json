@@ -1,6 +1,6 @@
 {
   "name": "uba-install",
-  "version": "0.0.7",
+  "version": "0.0.13",
   "description": "uba package installer plugin",
   "main": "index.js",
   "scripts": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/iuap-design/uba-install#readme",
   "dependencies": {
+    "co":"^4.6.0",
     "chalk": "^1.1.3",
     "minimist": "^1.2.0",
     "npminstall": "^2.30.0"
